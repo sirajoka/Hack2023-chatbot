@@ -3,39 +3,35 @@ from streamlit_chat import message
 from streamlit_extras.colored_header import colored_header
 from chatbot import DecathlonChatbot
 
-st.set_page_config(page_title="DecathlonChat - AI Customer Assistant", page_icon='💬')
+st.set_page_config(page_title="AI Customer Assistant", page_icon='💬')
 
 with st.sidebar:
-    st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Decathlon_Logo.png/1200px-Decathlon_Logo.png")
-    st.markdown('# 💬 DecathlonChat 🤖')
+    st.image("https://commons.wikimedia.org/wiki/File:Hackathon-llm-2023.png")
+    st.markdown('# 💬 Menu 🎿')
     st.markdown('''
     ---
-    ### 🔮 À Propos
+    ### 🔮 Purpose
 
-    Decathlon est une entreprise française de grande distribution de sport et de loisirs.
+    This AI assisstant is designed to improve customer experience related to searching within an E-Commerce website.
 
-    Avec plus de 2 193 magasins répartis dans 57 pays, le groupe estime son chiffre d’affaires
-    global à plus de 12,4 milliards d'euros annuellement en 2019.
+    We believe this AI assisstant can help many customers worldwide.
 
-    🏀🏓🏈🎳⚾🏒🥊⛳🤿🏏🎾🎿🏐⛸️
+    🏀🏓🏈🎳⚾🏒🥊⛳🤿🏏🎾🎿🏐⛸️🤖
 
-    Cette application est un chatbot qui répond aux questions des clients de Decathlon Maroc en se basant sur les informations disponibles
-    sur le site web [Decathlon Maroc](https://www.decathlon.ma/).
+    This application intends to respond questions from customers based in this dataset.
 
     ###
     ''')
 
-    st.markdown('💻 Source code on [Github](https://github.com/Hamagistral/decathlon-chatbot)')
-    st.markdown('👨‍💻 Made by [Hamagistral](https://www.linkedin.com/in/hamza-elbelghiti/)')
+    st.markdown('💻 Source code on [Github]')
+    st.markdown('👨‍💻 Made by')
     st.markdown('---')
-    st.markdown("🔴 N.B: Ce projet est un projet personnel et n'est pas affilié à Decathlon Maroc")
-
-
+    
 if 'generated' not in st.session_state:
-    st.session_state['generated'] = ["👋🏻 Bonjour! Je suis DecathlonChat, comment-puis-je vous aider ?"]
+    st.session_state['generated'] = ["👋🏻 Hello! This is your AI assisstant, how can I help you ?"]
 
 if 'past' not in st.session_state:
-    st.session_state['past'] = ['Salut !']
+    st.session_state['past'] = ['GOOD BYE !']
 
 # Layout of input/response containers
 input_container = st.container()
