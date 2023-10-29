@@ -1,3 +1,4 @@
+import os
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
 from langchain.vectorstores import Pinecone
@@ -11,7 +12,7 @@ from dotenv import find_dotenv, load_dotenv
 import streamlit as st
 import pinecone
 
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
 PINECONE_API_KEY = "7440d145-170c-4b35-9448-249e92d4dc94"
 PINECONE_ENV = "gcp-starter"
 PINECONE_INDEX = "langchain-retrieval"
