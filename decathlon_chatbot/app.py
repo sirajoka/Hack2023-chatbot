@@ -9,7 +9,7 @@ with st.sidebar:
     st.image("https://commons.wikimedia.org/wiki/File:Hackathon-llm-2023.png")
     st.markdown('# 💬 Menu 🎿')
     st.markdown('''
-    ---
+    
     ### 🔮 Purpose
 
     This AI assisstant is designed to improve customer experience related to searching within an E-Commerce website.
@@ -25,7 +25,7 @@ with st.sidebar:
 
     st.markdown('💻 Source code on [Github]')
     st.markdown('👨‍💻 Made by')
-    st.markdown('---')
+    
     
 if 'generated' not in st.session_state:
     st.session_state['generated'] = ["👋🏻 Hello! This is your AI assisstant, how can I help you ?"]
@@ -45,7 +45,7 @@ def get_text():
 
 
 with input_container:
-    st.markdown("### 💬 Avez-vous une question pour Decathlon Maroc ?")
+    st.markdown("💬 Hi what is your question ?")
     user_input = get_text()
 
 
