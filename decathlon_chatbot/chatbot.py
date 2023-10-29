@@ -12,7 +12,7 @@ from dotenv import find_dotenv, load_dotenv
 import streamlit as st
 import pinecone
 
-OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+OPENAI_API_KEY = st.secrets["openai_api_key"]
 PINECONE_API_KEY = "7440d145-170c-4b35-9448-249e92d4dc94"
 PINECONE_ENV = "gcp-starter"
 PINECONE_INDEX = "langchain-retrieval"

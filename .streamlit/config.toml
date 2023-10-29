@@ -6,3 +6,6 @@ base="light"
 disable=[
   'no-name-in-module'
 ]
+
+[openai]
+openai_api_key="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"
