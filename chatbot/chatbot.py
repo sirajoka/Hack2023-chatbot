@@ -1,8 +1,16 @@
 import os
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
-from langchain.chains import ConversationChain
+
+#from langchain.chains import ConversationChain
+#from langchain.memory import ConversationBufferMemory
+
+from langchain.memory.chat_message_histories.in_memory import ChatMessageHistory
+from langchain.schema import messages_from_dict, messages_to_dict
 from langchain.memory import ConversationBufferMemory
+from langchain.chains import ConversationalRetrievalChain, ConversationChain
+
+
 from langchain.vectorstores import Pinecone
 from langchain.chains import LLMChain
 from langchain.prompts.chat import (
@@ -13,6 +21,9 @@ from langchain.prompts.chat import (
 from dotenv import find_dotenv, load_dotenv
 import streamlit as st
 import pinecone
+
+import json
+
 
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 PINECONE_API_KEY = "7440d145-170c-4b35-9448-249e92d4dc94"
@@ -70,9 +81,30 @@ class DecathlonChatbot:
             [system_message_prompt, human_message_prompt]
         )
 
-        buffermemory = ConversationBufferMemory()
-        chain = ConversationChain(llm=chat,memory=buffermemory, prompt=chat_prompt, verbose=True)
-        #chain = LLMChain(llm=chat, memory=buffermemory, prompt=chat_prompt, verbose=True)
+
+        # FAILURES SHOWN chain = ConversationChain(llm=chat,memory=buffermemory, prompt=chat_prompt, verbose=True)
+        # DID NOT REMEMBER chain = LLMChain(llm=chat, memory=buffermemory, prompt=chat_prompt, verbose=True)
+        # ORIGINAL chain = LLMChain(llm=chat, prompt=chat_prompt)
+        #buffermemory = ConversationBufferMemory()      
+        # FAILURES SHOWN chain = ConversationChain(llm=chat,memory=buffermemory, prompt=chat_prompt, verbose=True)
+
+        chain = ConversationChain( llm=chat,
+                                   verbose=True,
+                                   memory=ConversationBufferMemory()
+        )
+ 
+        #extracted_messages = chain.memory.chat_memory.messages
+        #ingest_to_db = messages_to_dict(extracted_messages)
+        #retrieve_from_db = json.loads(json.dumps(ingest_to_db))
+        #retrieved_messages = messages_from_dict(retrieve_from_db)
+        #retrieved_chat_history = ChatMessageHistory(messages=retrieved_messages)
+        #retrieved_memory = ConversationBufferMemory(chat_memory=retrieved_chat_history)
+
+        #reloaded_chain = ConversationChain(
+        #    llm=chat,
+        #    verbose=True,
+        #    memory=retrieved_memory
+        #)
 
         try:
             response = chain.run(question=query, docs=docs_page_content)
