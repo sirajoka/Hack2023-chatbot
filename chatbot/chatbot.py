@@ -23,19 +23,17 @@ import streamlit as st
 import pinecone
 
 from getpass import getpass
-
-
-HUGGINGFACE_API_TOKEN = getpass()
-os.environ["HUGGINGFACE_API_TOKEN"] = HUGGINGFACE_API_TOKEN   
-
-
-
 from langchain import PromptTemplate, LLMChain
+
+
+HUGGINGFACE_API_TOKEN = st.secrets["HUGGINGFACE_API_TOKEN"]
+os.environ["HUGGINGFACE_API_TOKEN"] = HUGGINGFACE_API_TOKEN   
 
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 PINECONE_API_KEY = "7440d145-170c-4b35-9448-249e92d4dc94"
 PINECONE_ENV = "gcp-starter"
 PINECONE_INDEX = "langchain-retrieval"
+
 
 class DecathlonChatbot:
     def __init__(self):
