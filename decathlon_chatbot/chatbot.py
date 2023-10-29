@@ -11,10 +11,10 @@ from dotenv import find_dotenv, load_dotenv
 import streamlit as st
 import pinecone
 
-OPENAI_API_KEY = st.secrets.openai_api_key
-PINECONE_API_KEY = st.secrets.pinecone_api_key
-PINECONE_ENV = st.secrets.pinecone_env_key
-PINECONE_INDEX = st.secrets.pinecone_index
+OPENAI_API_KEY = "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"
+PINECONE_API_KEY = "7440d145-170c-4b35-9448-249e92d4dc94"
+PINECONE_ENV = "gcp-starter"
+PINECONE_INDEX = "langchain-retrieval"
 
 class DecathlonChatbot:
     def __init__(self):
