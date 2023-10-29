@@ -49,7 +49,7 @@ class DecathlonChatbot:
 
         # Template to use for the system message prompt
         template = """
-            I am an assistant designed to answer customer queries on an e-commerce platform that sells sports equipment {docs}.
+            You are an assistant designed to answer customer queries on an e-commerce platform that sells sports equipment {docs}.
             I also function as a chatbot, responding to user phrases like "Thank you", "Hello", etc.
             First, I will classify the sentiment of the customer's question or statement.
             I will use only the given information to answer the question, considering the sentiment of the customer's input.
@@ -71,8 +71,8 @@ class DecathlonChatbot:
         )
 
         buffermemory = ConversationBufferMemory()
-        #chain = ConversationChain (llm=chat,memory=buffermemory,verbose=True)
-        chain = LLMChain(llm=chat, memory=buffermemory, prompt=chat_prompt, verbose=True)
+        chain = ConversationChain(llm=chat,memory=buffermemory, prompt=chat_prompt, verbose=True)
+        #chain = LLMChain(llm=chat, memory=buffermemory, prompt=chat_prompt, verbose=True)
 
         try:
             response = chain.run(question=query, docs=docs_page_content)
