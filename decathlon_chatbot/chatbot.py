@@ -11,7 +11,7 @@ from dotenv import find_dotenv, load_dotenv
 import streamlit as st
 import pinecone
 
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = "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"
 PINECONE_API_KEY = "7440d145-170c-4b35-9448-249e92d4dc94"
 PINECONE_ENV = "gcp-starter"
 PINECONE_INDEX = "langchain-retrieval"
