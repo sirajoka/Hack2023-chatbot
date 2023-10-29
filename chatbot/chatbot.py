@@ -3,7 +3,7 @@ import os
 from langchain.embeddings.openai import OpenAIEmbeddings
 
 from langchain.chat_models import ChatOpenAI
-from langchain import HuggingFaceHub
+from langchain.llms import HuggingFaceHub
 
 from langchain.memory.chat_message_histories.in_memory import ChatMessageHistory
 from langchain.schema import messages_from_dict, messages_to_dict
@@ -23,7 +23,8 @@ import streamlit as st
 import pinecone
 
 from getpass import getpass
-from langchain import PromptTemplate, LLMChain
+
+from langchain.prompts import PromptTemplate
 
 
 HUGGINGFACE_API_TOKEN = st.secrets["HUGGINGFACE_API_TOKEN"]
