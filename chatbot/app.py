@@ -12,7 +12,7 @@ with st.sidebar:
     
     ### 🔮 Purpose
 
-    This AI assisstant is designed to improve customer experience related to searching within an E-Commerce website.
+    This AI assisstant Kamal is designed to improve customer experience related to searching within an E-Commerce website.
 
     We believe this AI assisstant can help many customers worldwide.
 
@@ -28,7 +28,7 @@ with st.sidebar:
     
     
 if 'generated' not in st.session_state:
-    st.session_state['generated'] = ["👋🏻 Hello! This is your AI assisstant, how can I help you ?"]
+    st.session_state['generated'] = ["👋🏻 Hello! This is your AI assisstant Kamal, how can I help you ?"]
 
 if 'past' not in st.session_state:
     st.session_state['past'] = ['GOOD BYE !']
@@ -40,12 +40,12 @@ response_container = st.container()
 
 
 def get_text():
-    question = st.text_input("Your question is? ", "", key="input")
+    question = st.text_input("Question? ", "", key="input")
     return question
 
 
 with input_container:
-    st.markdown("💬 Welcome, what is your question ?")
+    st.markdown("💬 Welcome to Amazon.com assisstant, how can I help you ?")
     user_input = get_text()
 
 
