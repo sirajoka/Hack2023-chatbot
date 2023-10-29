@@ -1,6 +1,8 @@
 import os
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
+from langchain.chains import ConversationChain
+from langchain.memory import ConversationBufferMemory
 from langchain.vectorstores import Pinecone
 from langchain.chains import LLMChain
 from langchain.prompts.chat import (
@@ -68,7 +70,9 @@ class DecathlonChatbot:
             [system_message_prompt, human_message_prompt]
         )
 
-        chain = LLMChain(llm=chat, prompt=chat_prompt)
+        buffermemory = ConversationBufferMemory()
+        #chain = ConversationChain (llm=chat,memory=buffermemory,verbose=True)
+        chain = LLMChain(llm=chat, memory=buffermemory, prompt=chat_prompt, verbose=True)
 
         try:
             response = chain.run(question=query, docs=docs_page_content)
