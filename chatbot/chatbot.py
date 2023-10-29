@@ -146,7 +146,8 @@ class DecathlonChatbot:
         memory = ConversationBufferMemory()
         conversation_buf = ConversationChain(
             llm=chat,
-            memory=memory)
+            memory=memory,
+            prompt=chat_prompt)
 
         
         # DID NOT REMEMBER chain = LLMChain(llm=chat, memory=buffermemory, prompt=chat_prompt, verbose=True)
