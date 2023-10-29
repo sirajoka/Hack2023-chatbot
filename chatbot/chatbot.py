@@ -5,9 +5,11 @@ from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.chat_models import ChatOpenAI
 from langchain.llms import HuggingFaceHub
 
+from langchain.chains.conversation.memory import ConversationBufferMemory
+
 from langchain.memory.chat_message_histories.in_memory import ChatMessageHistory
 from langchain.schema import messages_from_dict, messages_to_dict
-from langchain.memory import ConversationBufferMemory
+#from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain, ConversationChain
 
 
@@ -67,7 +69,7 @@ class DecathlonChatbot:
         repo_id = "tiiuae/falcon-7b-instruct"
         chat = HuggingFaceHub(huggingfacehub_api_token=HUGGINGFACE_API_TOKEN, 
                             repo_id=repo_id, 
-                            model_kwargs={"temperature":0.7, "max_new_tokens":700})
+                            model_kwargs={"temperature":0, "max_new_tokens":100})
 
 
         # Template to use for the system message prompt
@@ -139,8 +141,12 @@ class DecathlonChatbot:
         )
 
 
-        chain = LLMChain(llm=chat, prompt=chat_prompt)
+        #chain = LLMChain(llm=chat, prompt=chat_prompt)
      
+        memory = ConversationBufferMemory()
+        conversation_buf = ConversationChain(
+            llm=chat,
+            memory=memory)
 
         
         # DID NOT REMEMBER chain = LLMChain(llm=chat, memory=buffermemory, prompt=chat_prompt, verbose=True)
@@ -169,7 +175,8 @@ class DecathlonChatbot:
         #)
 
         try:
-            response = chain.run(question=query, docs=docs_page_content)
+            response = conversation_buf.predict(question=query,docs=docs_page_content)
+            #chain.run(question=query, docs=docs_page_content)
 
             return response
         except:
