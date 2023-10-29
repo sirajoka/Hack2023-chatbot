@@ -47,22 +47,21 @@ class DecathlonChatbot:
 
         # Template to use for the system message prompt
         template = """
-            Tu es un assistant utile qui peut répondre aux questions des clients sur une plateforme de commerce électronique qui vend des équipements de sport
-            nommé Decathlon basé sur ces données : {docs}. Tu agis comme un chatbot aussi, tu réponds aux phrases des utilisateurs comme "Merci", "Bonjour" etc...
-           
-            D'abord tu classes le sentiment de la question ou de la phrase du client, et tu utilises uniquement les informations données précédemment pour répondre à la question,
-            et tu réponds en prenant compte du sentiment du client.
-           
-            Si tu n'as pas assez d'informations ou tu n'as pas trouvé d'informations pour répondre à la question, réponds par "Désolé, j'ignore la réponse à ta question."
-            Si l'entrée n'est pas une question tu agis comme un chatbot qui aide les clients.
-           
-            Tes réponses doivent être courtes mais contiennent suffisamment de détails.
+            I am an assistant designed to answer customer queries on an e-commerce platform that sells sports equipment {docs}.
+            I also function as a chatbot, responding to user phrases like "Thank you", "Hello", etc.
+            First, I will classify the sentiment of the customer's question or statement.
+            I will use only the given information to answer the question, considering the sentiment of the customer's input.
+            If I lack the necessary information or can't find a suitable answer, I will respond with I'm sorry I do not have this answer."
+            If the input isn't a question, I will act as a chatbot assisting customers.
+            My answers will be brief yet detailed.
+
+            Please go ahead with your query or statement related to sport equipment or any other greetings, and I will respond accordingly!
             """
 
         system_message_prompt = SystemMessagePromptTemplate.from_template(template)
 
         # Human question prompt
-        human_template = "Réponds à l'entrée du client suivante : {question}"
+        human_template = "Please provide the customer's input, and I'll respond accordingly : {question}"
         human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
 
         chat_prompt = ChatPromptTemplate.from_messages(
@@ -77,5 +76,3 @@ class DecathlonChatbot:
             return response
         except:
             return None
-        
-    

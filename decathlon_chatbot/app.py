@@ -3,7 +3,7 @@ from streamlit_chat import message
 from streamlit_extras.colored_header import colored_header
 from chatbot import DecathlonChatbot
 
-st.set_page_config(page_title="AI Customer Assistant", page_icon='💬')
+st.set_page_config(page_title="E-Commerce Assistant", page_icon='💬')
 
 with st.sidebar:
     st.image("https://commons.wikimedia.org/wiki/File:Hackathon-llm-2023.png")
@@ -45,7 +45,7 @@ def get_text():
 
 
 with input_container:
-    st.markdown("💬 Hi what is your question ?")
+    st.markdown("💬 Welcome, what is your question ?")
     user_input = get_text()
 
 
