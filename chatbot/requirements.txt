@@ -1,4 +1,6 @@
 langchain
+huggingface_hub
+watermark
 pinecone_client
 python-dotenv
 streamlit_chat
