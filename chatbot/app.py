@@ -12,13 +12,13 @@ with st.sidebar:
     
     ### 🔮 Purpose
 
-    This AI assisstant Kamal is designed to improve customer experience related to searching within an E-Commerce website.
+    This AI assistant Kamal is designed to improve customer experience related to searching within an E-Commerce website.
 
-    We believe this AI assisstant can help many customers worldwide.
+    We believe this AI assistant can help many customers worldwide.
 
     🏀🏓🏈🎳⚾🏒🥊⛳🤿🏏🎾🎿🏐⛸️🤖
 
-    This application intends to respond questions from customers based in this dataset.
+    This application intends to respond to questions from customers based on this dataset.
 
     ###
     ''')
@@ -28,7 +28,7 @@ with st.sidebar:
     
     
 if 'generated' not in st.session_state:
-    st.session_state['generated'] = ["👋🏻 Hello! This is your AI assisstant Kamal, how can I help you ?"]
+    st.session_state['generated'] = ["👋🏻 Hello! This is your AI assistant Kamal, how can I help you ?"]
 
 if 'past' not in st.session_state:
     st.session_state['past'] = ['GOOD BYE !']
@@ -75,4 +75,4 @@ footer {visibility: hidden;}
 </style>
 """
 
-st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
