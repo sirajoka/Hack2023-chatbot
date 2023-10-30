@@ -38,7 +38,7 @@ response_container = st.container()
 
 
 def get_text():
-    question = st.text_input("Your inquiry", "", key="input")
+    question = st.text_input("Your inquiry: ", "", key="input")
     return question
 
 
@@ -46,9 +46,9 @@ with input_container:
     st.markdown("💬 Welcome my name is Kamal, I'm an E-commerce assistant, how can I help you ?")
     user_input = get_text()
 
-
+chatbot = MaverickChatbot()
 def generate_response(prompt):
-    chatbot = MaverickChatbot()
+    
     db = chatbot.get_db_maverick()
     response = chatbot.get_response_from_query(db, prompt)
     return response
