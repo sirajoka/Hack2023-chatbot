@@ -1,37 +1,35 @@
 import streamlit as st
 from streamlit_chat import message
 from streamlit_extras.colored_header import colored_header
-from chatbot import DecathlonChatbot
+from chatbot import MaverickChatbot
 
 st.set_page_config(page_title="E-Commerce Assistant", page_icon='💬')
 
 with st.sidebar:
-    st.image("https://commons.wikimedia.org/wiki/File:Hackathon-llm-2023.png")
-    st.markdown('# 💬 Menu 🎿')
+    st.image("https://upload.wikimedia.org/wikipedia/commons/4/4c/Hackathon-llm-2023.png")
+    st.markdown('# 🤖 Menu ')
     st.markdown('''
     
-    ### 🔮 Purpose
+    ### Purpose
 
-    This AI assistant Kamal is designed to improve customer experience related to searching within an E-Commerce website.
+    This AI assisstant Kamal is designed to improve customer experience related to searching products or services within an E-Commerce website.
 
-    We believe this AI assistant can help many customers worldwide.
+    We believe this AI assisstant can help many customers worldwide.
 
     🏀🏓🏈🎳⚾🏒🥊⛳🤿🏏🎾🎿🏐⛸️🤖
-
-    This application intends to respond to questions from customers based on this dataset.
 
     ###
     ''')
 
-    st.markdown('💻 Source code on [Github]')
-    st.markdown('👨‍💻 Made by')
+    st.markdown('💻 Source code on [Github] (https://github.com/oldbright22/Hack2023-chatbot)')
+    st.markdown('👨‍💻 Made by FutureTech Mavericks (https://tinyurl.com/Discord-MaverickTeam) ')
     
     
 if 'generated' not in st.session_state:
-    st.session_state['generated'] = ["👋🏻 Hello! This is your AI assistant Kamal, how can I help you ?"]
+    st.session_state['generated'] = ["👨‍💻 Hello!"]
 
 if 'past' not in st.session_state:
-    st.session_state['past'] = ['GOOD BYE !']
+    st.session_state['past'] = ['']
 
 # Layout of input/response containers
 input_container = st.container()
@@ -40,18 +38,18 @@ response_container = st.container()
 
 
 def get_text():
-    question = st.text_input("Question? ", "", key="input")
+    question = st.text_input("Your inquiry", "", key="input")
     return question
 
 
 with input_container:
-    st.markdown("💬 Welcome to Amazon.com assistant, how can I help you ?")
+    st.markdown("💬 Welcome my name is Kamal, I'm an E-commerce assistant, how can I help you ?")
     user_input = get_text()
 
 
 def generate_response(prompt):
-    chatbot = DecathlonChatbot()
-    db = chatbot.get_db_decathlon()
+    chatbot = MaverickChatbot()
+    db = chatbot.get_db_maverick()
     response = chatbot.get_response_from_query(db, prompt)
     return response
 
@@ -75,4 +73,4 @@ footer {visibility: hidden;}
 </style>
 """
 
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
