@@ -33,7 +33,7 @@ class DecathlonChatbot:
         index_name = PINECONE_INDEX
         db = Pinecone.from_existing_index(index_name, self.embeddings)
         return db
-    @st.cache_data(show_spinner=False)
+    
     def get_response_from_query(db, query, k=4):
         docs = db.similarity_search(query, k=k)
         docs_page_content = " ".join([d.page_content for d in docs])
