@@ -34,53 +34,53 @@ class DecathlonChatbot:
         db = Pinecone.from_existing_index(index_name, self.embeddings)
         return db
 
-def get_response_from_query(db, query, k=4):
-    docs = db.similarity_search(query, k=k)
-    docs_page_content = " ".join([d.page_content for d in docs])
+    def get_response_from_query(db, query, k=4):
+        docs = db.similarity_search(query, k=k)
+        docs_page_content = " ".join([d.page_content for d in docs])
 
-    # Create your chat model (HuggingFaceHub or other) here
-    repo_id = "tiiuae/falcon-7b-instruct"
-    chat = HuggingFaceHub(
-        huggingfacehub_api_token=HUGGINGFACE_API_TOKEN,
-        repo_id=repo_id,
-        model_kwargs={"temperature": 0, "max_new_tokens": 100},
+        # Create your chat model (HuggingFaceHub or other) here
+        repo_id = "tiiuae/falcon-7b-instruct"
+        chat = HuggingFaceHub(
+            huggingfacehub_api_token=HUGGINGFACE_API_TOKEN,
+            repo_id=repo_id,
+            model_kwargs={"temperature": 0, "max_new_tokens": 100},
     )
 
-    # Define system and human message prompts
-    system_message_template = """
-        You are a friendly E-commerce AI assistant named Kamal designed to answer customer queries on an e-commerce platform that sells products in Amazon retail store {docs}.
-        Kamal functions as a chatbot and responds to user phrases like "Thank you", "Hello", etc.
-        If the customer shares their name with Kamal, Kamal will remember it politely.
-        First, Kamal will classify the sentiment of the customer's question or statement.
-        Kamal will use only the given information to answer the question, considering the sentiment of the customer's input.
-        If the customer's input contains a typo, Kamal will politely ask for a correction before proceeding to research an answer.
-        If Kamal lacks the necessary information or can't find a suitable answer, Kamal will respond with "I'm sorry" and ask follow-up questions.
-        If the customer's input isn't a question, Kamal will act as a chatbot assisting customers with brief answers.
+        # Define system and human message prompts
+        system_message_template = """
+            You are a friendly E-commerce AI assistant named Kamal designed to answer customer queries on an e-commerce platform that sells products in Amazon retail store {docs}.
+            Kamal functions as a chatbot and responds to user phrases like "Thank you", "Hello", etc.
+            If the customer shares their name with Kamal, Kamal will remember it politely.
+            First, Kamal will classify the sentiment of the customer's question or statement.
+            Kamal will use only the given information to answer the question, considering the sentiment of the customer's input.
+            If the customer's input contains a typo, Kamal will politely ask for a correction before proceeding to research an answer.
+            If Kamal lacks the necessary information or can't find a suitable answer, Kamal will respond with "I'm sorry" and ask follow-up questions.
+            If the customer's input isn't a question, Kamal will act as a chatbot assisting customers with brief answers.
 
-        Please go ahead with your query or statement related to Amazon Retail store or any other greetings, and Kamal will respond accordingly!
-    """
-    system_message_prompt = SystemMessagePromptTemplate.from_template(
-        system_message_template
-    )
+            Please go ahead with your query or statement related to Amazon Retail store or any other greetings, and Kamal will respond accordingly!
+        """
+        system_message_prompt = SystemMessagePromptTemplate.from_template(
+            system_message_template
+        )
 
-    human_question_template = "Please respond accordingly to the customer's question: {question}"
-    human_message_prompt = HumanMessagePromptTemplate.from_template(
-        human_question_template
-    )
+        human_question_template = "Please respond accordingly to the customer's question: {question}"
+        human_message_prompt = HumanMessagePromptTemplate.from_template(
+            human_question_template
+        )
 
-    chat_prompt = ChatPromptTemplate.from_messages(
-        [system_message_prompt, human_message_prompt]
-    )
+        chat_prompt = ChatPromptTemplate.from_messages(
+            [system_message_prompt, human_message_prompt]
+        )
 
-    # Initialize the conversation buffer memory
-    memory = ChatMessageHistory()
-    conversation_buf = ConversationChain(llm=chat, memory=memory, prompt=chat_prompt)
+        # Initialize the conversation buffer memory
+        memory = ChatMessageHistory()
+        conversation_buf = ConversationChain(llm=chat, memory=memory, prompt=chat_prompt)
 
-    try:
-        response = conversation_buf.predict(question=query, docs=docs_page_content)
-        return response
-    except:
-        return None
+        try:
+            response = conversation_buf.predict(question=query, docs=docs_page_content)
+            return response
+        except:
+            return None
 
 if __name__ == "__main__":
     chatbot = DecathlonChatbot()
