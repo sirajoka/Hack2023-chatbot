@@ -51,6 +51,9 @@ def generate_response(prompt):
     
     db = chatbot.get_db_maverick()
     response = chatbot.get_response_from_query(db, prompt)
+    if response:
+        st.session_state.past.append(user_input)
+        st.session_state.past.append(response)
     return response
 
 ## Conditional display of AI generated responses as a function of user provided prompts
