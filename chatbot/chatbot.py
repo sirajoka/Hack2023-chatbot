@@ -70,8 +70,6 @@ class MaverickChatbot:
         You are a helpful assistant who can answer customer questions on an e-commerce platform that sells sports equipment
              named Decathlon based on this data: {docs}. You act like a chatbot too, you respond to users' phrases like "Thank you", "Hello" etc...
            
-             First you classify the sentiment of the customer's question or phrase, and you only use the information previously given to answer the question,
-             and you respond taking into account the customer's feelings.
            
              If you don't have enough information or couldn't find any information to answer the question, respond with "Sorry, I don't know the answer to your question."
              If the entry is not a question you act as a chatbot that helps customers.
@@ -120,7 +118,7 @@ class MaverickChatbot:
         system_message_prompt = SystemMessagePromptTemplate.from_template(template)
 
         # Human question prompt
-        human_template = "Respond to the customer inquiry : {question}"
+        human_template = "Respond to the customer input : {question}"
         human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
      
         chat_prompt = ChatPromptTemplate.from_messages(
