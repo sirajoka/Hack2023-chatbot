@@ -25,9 +25,9 @@ HUGGINGFACE_API_TOKEN = st.secrets["HUGGINGFACE_API_TOKEN"]
 os.environ["HUGGINGFACE_API_TOKEN"] = HUGGINGFACE_API_TOKEN   
 
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
-PINECONE_API_KEY = "7440d145-170c-4b35-9448-249e92d4dc94"
+PINECONE_API_KEY = "19ae548b-00c2-40fd-a32b-6239defec42d"
 PINECONE_ENV = "gcp-starter"
-PINECONE_INDEX = "langchain-retrieval"
+PINECONE_INDEX = "falcon"
 
 
 class MaverickChatbot:
